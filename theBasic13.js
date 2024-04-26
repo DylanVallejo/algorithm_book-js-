@@ -42,6 +42,60 @@ function findTheMaxValue(array){
 }
 // console.log(findTheMaxValue(array))
 
+
+
+//print how many numbers are greather than y 
+function  greaterThanY(array, y){
+    
+    let sum = 0;
+    array.forEach((element, index)=>{
+        if(element > y){
+            sum++
+        }
+    })
+    return sum;
+    
+}
+
+// console.log(greaterThanY(array,3))
+
+// max min adn average
+
+function statArray(array){
+    
+    let min =0;
+    let max= 0;
+    let sum = 0;
+    array.forEach((element)=>{
+        if(element>max){
+            max = element
+        } 
+        if(element<min && element<max){
+            min = element
+        }
+        sum = sum + element
+    })
+    var average = sum/array.length
+    return {max: max, min:min, average:average}
+    
+}
+// console.log(statArray(array))
+
+function swapNegativesToDojo(array){
+    
+    let swapArray = [];
+    array.forEach(element => {
+        if(element < 0){
+            swapArray.push('Dojo')
+        }else{
+            swapArray.push(element)
+        }
+    });
+    return swapArray;
+}
+
+// console.log(swapNegativesToDojo(array))
+
 //create an array whit al the odd numbers from 1 to 255
 
 function oddNumbers(){
@@ -186,8 +240,7 @@ is evenly divisible by 3 or 5 but not both​. Display the final sum in the cons
 function threesFives(start, end){
     
     let sum = 0;
-    console.log("funciona")
-    
+
     for(let index = start; index <= end; index++){
         if(index % 3 === 0 && index % 5 === 0){
             continue
@@ -199,11 +252,132 @@ function threesFives(start, end){
         } 
         
     }
-    console.log(sum)
     return sum;
+    
+}
+// console.log(threesFives(100,4000000))
+
+//page 39 algorithm book
+
+//generate coins
+
+
+function generateCoins(cents){
+    let coin1dollar = 100;
+    let coin50c = 50;
+    let coin25c = 25;
+    
+    if(cents >= 100){
+        let totalDollarCoins = cents/coin1dollar;
+        return 'dollar coins: ' + totalDollarCoins ;
+    }else if(cents <= 50){
+        let totalFiftyCoins = cents/coin50c;
+        return '50 cents coins: ' + totalFiftyCoins;
+    }else if(cents <=25 ){
+        let total25Coins = cents/coin25c;
+        return '25 cents coins: ' + total25Coins;
+    }
     
     
 }
-console.log(threesFives(100,4000000))
 
-//page 39 algorithm book
+// console.log(generateCoins(35));
+
+function generateCoinChange(cents) {
+    // Define the denominations of coins
+    const coinValues = [25, 10, 5, 1];
+    const coinNames = ['quarters', 'dimes', 'nickels', 'pennies'];
+
+    let remainingCents = cents;
+    const result = {};
+
+    // Iterate through each coin value
+    for (let i = 0; i < coinValues.length; i++) {
+        const coinValue = coinValues[i];
+        const coinName = coinNames[i];
+
+        // Calculate how many of this coin can be used
+        const numCoins = Math.floor(remainingCents / coinValue);
+
+        // Update the remaining cents
+        remainingCents -= numCoins * coinValue;
+
+        // Add to the result if we used this coin
+        if (numCoins > 0) {
+            result[coinName] = numCoins;
+        }
+
+        // If we've made all change, break
+        if (remainingCents === 0) {
+            break;
+        }
+    }
+
+    // Print the result
+    console.log(`Change for ${cents} cents:`);
+    for (const coin in result) {
+        console.log(`${result[coin]} ${coin}`);
+    }
+}
+// Test the function
+// generateCoinChange(87); // Should output: quarters: 3, dimes: 1, pennies: 2
+
+
+
+//fibonachi
+
+
+function fibonacci(times){
+    let sequence = []
+    for(let i =0; i <=times ; i++){
+        if(i === 0 ){
+            sequence.push(i)
+        }else if(i === 1){
+            sequence.push(i)
+        }else{
+            sequence.push(sequence[i-1] + sequence[i-2])
+        }
+    }
+    sequence.forEach(element =>{
+        console.log(element)
+    })
+}
+
+// console.log(fibonacci(100))
+
+// las digit of a to b 
+
+
+function lastDigitFromAToB(a,b){
+    
+    let result = a**b;
+    let lastSignificantDigit = result.toString().split('');
+    console.log(lastSignificantDigit)
+    return lastSignificantDigit[lastSignificantDigit.length-1]
+
+}
+
+// console.log(lastDigitFromAToB(12,5))
+
+
+
+
+// clockHandAngles Create function clockHandAngles(seconds) that, given the number of seconds since 12:00:00, will 
+// print the angles (in degrees)
+
+
+
+function clockHandAngles(second){
+    
+    // let start = 
+    
+    
+    //  12  0 360
+    
+}
+
+
+
+
+
+

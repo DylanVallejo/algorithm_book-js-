@@ -369,7 +369,19 @@ function lastDigitFromAToB(a,b){
 
 function clockHandAngles(second){
     
-    // let start = 
+    // 12:00:00 = 0 grados
+    
+    let grades = 360
+    let secondsInDay = second % 43200;
+    let secondInHour = second % 3600;
+    let secondInMInute = second % 60
+    
+    
+    let secondsAngle = (360 * secondInMInute) % grades;
+    let minutesAngle = (/grades) * grades;
+    let hoursAngle = (second/grades) * grades;
+    
+    console.log(second)
     
     
     //  12  0 360
@@ -378,6 +390,25 @@ function clockHandAngles(second){
 
 
 
+function fiboEvenSum(n) {
+    let array = []
+    let sum = 0;
+    for(let i = 0; i <= n; i++){
+        if(i === 0){
+            array.push(i)
+        }else if( i === 1 ){
+            array.push(i)   
+        }else{
+            array.push(array[i-1] + array[i-2])
+        }
+    }
+    for(let i = 0; i < array.length-1; i++){
+        if(array[i] % 2 === 0 && array[i] <= n){    
+            sum = sum + array[i];
+        }
+    }
+    return sum;
+}
+console.log(fiboEvenSum(1000))
 
-
-
+// 34 should return 44

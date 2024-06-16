@@ -378,8 +378,8 @@ function clockHandAngles(second){
     
     
     let secondsAngle = (360 * secondInMInute) % grades;
-    let minutesAngle = (/grades) * grades;
-    let hoursAngle = (second/grades) * grades;
+    // let minutesAngle = (/grades) * grades;
+    // let hoursAngle = (second/grades) * grades;
     
     console.log(second)
     
@@ -401,6 +401,7 @@ function fiboEvenSum(n) {
         }else{
             array.push(array[i-1] + array[i-2])
         }
+        // [0,1,1,2,3,5,8,13]
     }
     for(let i = 0; i < array.length-1; i++){
         if(array[i] % 2 === 0 && array[i] <= n){    
@@ -409,6 +410,93 @@ function fiboEvenSum(n) {
     }
     return sum;
 }
-console.log(fiboEvenSum(1000))
+// console.log(fiboEvenSum(1000))
 
 // 34 should return 44
+
+// chapter two
+
+// PUSH FRONT
+
+function pushFront( array, value ){
+    
+    let arrayCopy = array;
+    arrayCopy.forEach((element,index)=>{
+        if(index === arrayCopy.length){
+            arrayCopy[arrayCopy.length] = value;
+        }
+    })
+    arrayCopy.push(value)
+    return arrayCopy;
+}
+
+
+// console.log(pushFront(array, 200))
+
+function popFront(array){
+    const arrayCopy = array;
+    const shiftedArray = [];
+    let firstValue = arrayCopy[0];
+    arrayCopy.forEach((element, index)=>{
+        if(index > 0){
+            shiftedArray[index-1] = element;
+        }
+    })
+    return {shiftedArray:shiftedArray , firstValue:firstValue}
+}
+
+// console.log(popFront(array))
+
+
+function insertAt(array, indexValue, value){
+    const copyArray  = structuredClone( array );
+    const returnArray = [];
+    // returnArray[0] = 1
+    // returnArray[1+1] = 2
+    
+    // console.log(returnArray[0])
+    // // copyArray[index] = value
+    copyArray.forEach((element, index) => {
+        if(index === indexValue){
+            returnArray[indexValue] = value;
+            returnArray[indexValue + 1] = element; 
+            // console.log(returnArray)
+        }else if(index > indexValue){
+            returnArray[index+1] = element
+        }
+    })
+    return returnArray
+    
+}
+// console.log(insertAt(array, 9, 777))
+
+
+
+const dirtyArray = ["aab", "aabab", "babab"]
+
+function cleanWords(dirtyArray){
+    
+    const copyArray = structuredClone(dirtyArray);
+    let cleanArray = [];
+    let wordsArray = []
+    const finalArray = []
+
+    for(let i =0; i < copyArray.length; i++){
+        wordsArray.push(copyArray[i].split(""))
+    }
+    
+    for(let j =0; j < wordsArray.length; j++){
+        const filteredWords = []
+        for(let k =0; k < wordsArray[j].length; k++){
+            if(wordsArray[j][k] !== wordsArray[j][k+1]){
+                filteredWords.push(wordsArray[j][k])
+            }
+        }
+        cleanArray.push(filteredWords)
+    }
+    cleanArray.forEach((element, index) =>{
+        finalArray.push(element.join(""));
+    })
+    console.log(finalArray)
+}
+console.log(cleanWords(dirtyArray))
